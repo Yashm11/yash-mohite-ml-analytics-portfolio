@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Yash Mohite – Data & ML projects</title>
+<meta name="description" content="Portfolio of data analytics and machine learning projects by Yash Mohite, Mumbai.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0f1a2e;
+    --ink-soft: #46506a;
+    --board: #f1f3ee;
+    --card: #ffffff;
+    --cobalt: #1d3fc4;
+    --marigold: #ffb81c;
+    --chili: #d1324a;
+    --line: #d5d9d0;
+    --display: "Bricolage Grotesque", "Arial Black", system-ui, sans-serif;
+    --body: "Instrument Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --ink: #eef0f6;
+      --ink-soft: #a7afc4;
+      --board: #0e1426;
+      --card: #161e36;
+      --cobalt: #7f9bff;
+      --line: #2a3556;
+    }
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--board);
+    color: var(--ink);
+    font-family: var(--body);
+    font-size: 17px;
+    line-height: 1.6;
+  }
+  a { color: inherit; }
+  :focus-visible { outline: 3px solid var(--marigold); outline-offset: 3px; border-radius: 4px; }
+  .wrap { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+
+  /* top bar */
+  header.bar {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 22px 0;
+  }
+  .bar .name { font-family: var(--display); font-weight: 800; font-size: 20px; text-decoration: none; }
+  .bar nav { display: flex; gap: 22px; font-weight: 500; font-size: 15px; }
+  .bar nav a { text-decoration: none; color: var(--ink-soft); }
+  .bar nav a:hover { color: var(--ink); }
+
+  /* hero: the signboard */
+  .hero { padding: 36px 0 56px; }
+  .sign {
+    background: var(--cobalt);
+    color: #fff;
+    border-radius: 6px;
+    padding: clamp(28px, 5vw, 56px);
+    position: relative;
+    box-shadow: 0 0 0 6px var(--board), 0 0 0 9px var(--marigold);
+  }
+  @media (prefers-color-scheme: dark) { .sign { color: #0e1426; } }
+  .sign h1 {
+    font-family: var(--display);
+    font-weight: 800;
+    font-size: clamp(38px, 7.2vw, 88px);
+    line-height: 0.98;
+    letter-spacing: -0.02em;
+    margin: 0 0 22px;
+    max-width: 14ch;
+  }
+  .sign p { font-size: clamp(17px, 2vw, 21px); max-width: 52ch; margin: 0 0 28px; opacity: .92; }
+  .sign .row { display: flex; flex-wrap: wrap; gap: 12px; }
+  .btn {
+    display: inline-block; text-decoration: none; font-weight: 600; font-size: 16px;
+    padding: 12px 20px; border-radius: 4px; border: 2px solid currentColor;
+  }
+  .btn.solid { background: var(--marigold); border-color: var(--marigold); color: #1a1405; }
+  .btn.solid:hover { filter: brightness(1.06); }
+  .btn.ghost:hover { background: rgba(255,255,255,.14); }
+  @media (prefers-color-scheme: dark) { .btn.ghost:hover { background: rgba(0,0,0,.1); } }
+
+  /* section heading */
+  h2 { font-family: var(--display); font-weight: 800; font-size: clamp(28px, 4vw, 42px); letter-spacing: -0.01em; margin: 0 0 8px; }
+  .lede { color: var(--ink-soft); margin: 0 0 36px; max-width: 60ch; }
+
+  /* project cards */
+  #projects { padding: 24px 0 72px; }
+  .projects { display: grid; gap: 28px; }
+  .project {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: 1.05fr 1.2fr;
+  }
+  .project .shot {
+    background: var(--ink);
+    padding: 18px 0 0 18px;
+    display: flex; flex-direction: column;
+    min-height: 320px;
+  }
+  .project .shot .frame {
+    background: #e7eaf0; border-radius: 8px 0 0 0; flex: 1; overflow: hidden;
+    display: flex; flex-direction: column;
+  }
+  .frame .chrome { display: flex; gap: 6px; padding: 9px 12px; background: #cfd4de; }
+  .frame .chrome i { width: 9px; height: 9px; border-radius: 50%; background: #9aa3b5; display: block; }
+  .frame img { width: 100%; display: block; object-fit: cover; object-position: top left; flex: 1; min-height: 0; }
+  .project .info { padding: clamp(22px, 3vw, 36px); display: flex; flex-direction: column; gap: 14px; }
+  .project h3 { font-family: var(--display); font-weight: 800; font-size: clamp(26px, 3vw, 34px); line-height: 1.1; margin: 0; }
+  .project .tagline { font-size: 18px; margin: 0; }
+  .project .meta { color: var(--ink-soft); font-size: 15px; margin: 0; }
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; padding: 0; margin: 0; list-style: none; }
+  .chips li { font-size: 14px; font-weight: 500; padding: 3px 11px; border: 1px solid var(--line); border-radius: 99px; }
+
+  /* the one memorable device: price-tag stats */
+  .tags { display: flex; flex-wrap: wrap; gap: 10px; padding: 0; margin: 4px 0; list-style: none; }
+  .tags li {
+    background: var(--marigold); color: #1a1405;
+    padding: 8px 16px 8px 26px; position: relative;
+    clip-path: polygon(14px 0, 100% 0, 100% 100%, 14px 100%, 0 50%);
+    font-size: 14px; line-height: 1.25;
+  }
+  .tags li::before {
+    content: ""; position: absolute; left: 12px; top: 50%; width: 6px; height: 6px;
+    margin-top: -3px; border-radius: 50%; background: var(--board);
+  }
+  .tags b { display: block; font-family: var(--display); font-size: 20px; font-weight: 800; }
+
+  .asks { border-left: 4px solid var(--cobalt); padding: 2px 0 2px 14px; margin: 4px 0; }
+  .asks small { display: block; color: var(--ink-soft); font-size: 14px; margin-bottom: 4px; }
+  .asks button {
+    font: inherit; font-size: 15px; text-align: left; cursor: pointer;
+    background: none; border: 0; padding: 0; color: var(--ink);
+    text-decoration: underline; text-decoration-color: var(--marigold); text-decoration-thickness: 2px; text-underline-offset: 3px;
+  }
+  .asks .answer { margin: 8px 0 0; font-size: 15px; color: var(--ink-soft); min-height: 1.6em; }
+
+  .links { display: flex; gap: 12px; margin-top: auto; padding-top: 6px; flex-wrap: wrap; }
+  .links .btn { border-color: var(--ink); font-size: 15px; padding: 9px 16px; }
+  .links .btn.primary { background: var(--ink); color: var(--board); }
+  .links .btn:hover { background: var(--marigold); border-color: var(--marigold); color: #1a1405; }
+
+  /* empty slot for next project */
+  .slot {
+    border: 2px dashed var(--line); border-radius: 8px; padding: 36px 28px;
+    display: flex; justify-content: space-between; align-items: center; gap: 20px; flex-wrap: wrap;
+  }
+  .slot p { margin: 0; color: var(--ink-soft); }
+  .slot strong { font-family: var(--display); font-size: 22px; color: var(--ink); display: block; }
+
+  /* about */
+  #about { padding: 56px 0; border-top: 1px solid var(--line); }
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+  #about p { margin: 0 0 14px; max-width: 56ch; }
+  .facts { list-style: none; padding: 0; margin: 0; }
+  .facts li { padding: 12px 0; border-bottom: 1px solid var(--line); display: flex; justify-content: space-between; gap: 16px; }
+  .facts li span:first-child { color: var(--ink-soft); }
+
+  footer { padding: 36px 0 56px; color: var(--ink-soft); font-size: 15px; border-top: 1px solid var(--line); }
+
+  @media (max-width: 820px) {
+    .project { grid-template-columns: 1fr; }
+    .project .shot { min-height: 0; max-height: 300px; }
+    .about-grid { grid-template-columns: 1fr; gap: 24px; }
+  }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header class="bar">
+    <a class="name" href="#top">Yash Mohite</a>
+    <nav aria-label="Primary">
+      <a href="#projects">Projects</a>
+      <a href="#about">About</a>
+      <a href="https://github.com/Yashm11">GitHub</a>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="sign">
+        <h1 id="hero-title">Data projects that answer real questions.</h1>
+        <p>I build analytics and machine learning tools for messy, large-scale problems. Each project below is live, open source, and comes with the reasoning behind it.</p>
+        <div class="row">
+          <a class="btn solid" href="#projects">See the projects</a>
+          <a class="btn ghost" href="https://github.com/Yashm11">GitHub profile</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects" aria-labelledby="projects-title">
+      <h2 id="projects-title">Projects</h2>
+      <p class="lede">Newest first. Each one starts with the question it answers.</p>
+      <div class="projects" id="project-list"></div>
+    </section>
+
+    <section id="about" aria-labelledby="about-title">
+      <h2 id="about-title">About</h2>
+      <div class="about-grid">
+        <div>
+          <p>I’m a data analytics manager in Mumbai. I work with machine learning pipelines, cloud infrastructure and sports tracking data day to day.</p>
+          <p>These projects are where I explore problems outside work, mostly ones where better data could change how everyday decisions get made.</p>
+        </div>
+        <ul class="facts">
+          <li><span>Based in</span><span>Mumbai, India</span></li>
+          <li><span>Works with</span><span>Python, AWS, GCP, PyTorch</span></li>
+          <li><span>Code</span><span><a href="https://github.com/Yashm11">github.com/Yashm11</a></span></li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <footer>© <span id="year"></span> Yash Mohite</footer>
+</div>
+
+<script>
+  /* ------------------------------------------------------------
+     To add a project: copy one object in this list and edit it.
+     Newest project goes first. Drop screenshots in /assets.
+     ------------------------------------------------------------ */
+  var PROJECTS = [
+    {
+      title: "K.I.D: kirana in district",
+      tagline: "Which pack size, at what price, should go to which district in India?",
+      meta: "Built on household spend (HCES 2022-23), NFHS-5 district profiles, BigBasket price ladders and OpenStreetMap shops.",
+      image: "assets/kirana_in_district_example.png",
+      imageAlt: "K.I.D app showing a map of India with districts coloured by recommended Maggi pack size, next to a pack and price card",
+      stats: [
+        { n: "706", label: "districts covered" },
+        { n: "11", label: "product categories" }
+      ],
+      stack: ["Python", "Streamlit", "Plotly", "LLM agent"],
+      ask: {
+        label: "The built-in assistant takes plain-language questions:",
+        examples: [
+          { q: "Maggi: which pack should go to Bihar and Kerala?", a: "It picks the brand and states, then highlights the recommended pack for each district on the map." },
+          { q: "Top 20 tea districts", a: "It ranks districts by demand for the category and shows them on the map and in the price card." }
+        ]
+      },
+      links: [
+        { text: "View code", href: "https://github.com/Yashm11/kirana-in-district", primary: true }
+        /* add { text: "Live demo", href: "https://..." } once it is deployed */
+      ]
+    }
+  ];
+
+  var list = document.getElementById("project-list");
+
+  function el(tag, cls, text) {
+    var e = document.createElement(tag);
+    if (cls) e.className = cls;
+    if (text) e.textContent = text;
+    return e;
+  }
+
+  PROJECTS.forEach(function (p) {
+    var card = el("article", "project");
+
+    var shot = el("div", "shot");
+    var frame = el("div", "frame");
+    var chrome = el("div", "chrome");
+    chrome.setAttribute("aria-hidden", "true");
+    for (var i = 0; i < 3; i++) chrome.appendChild(document.createElement("i"));
+    var img = document.createElement("img");
+    img.src = p.image; img.alt = p.imageAlt; img.loading = "lazy";
+    frame.appendChild(chrome); frame.appendChild(img); shot.appendChild(frame);
+
+    var info = el("div", "info");
+    info.appendChild(el("h3", null, p.title));
+    info.appendChild(el("p", "tagline", p.tagline));
+    info.appendChild(el("p", "meta", p.meta));
+
+    if (p.stats) {
+      var tags = el("ul", "tags");
+      p.stats.forEach(function (s) {
+        var li = document.createElement("li");
+        li.appendChild(el("b", null, s.n));
+        li.appendChild(document.createTextNode(s.label));
+        tags.appendChild(li);
+      });
+      info.appendChild(tags);
+    }
+
+    if (p.ask) {
+      var asks = el("div", "asks");
+      asks.appendChild(el("small", null, p.ask.label));
+      var answer = el("p", "answer", "Click a question to see what happens.");
+      answer.setAttribute("aria-live", "polite");
+      p.ask.examples.forEach(function (ex) {
+        var b = el("button", null, "“" + ex.q + "”");
+        b.type = "button";
+        b.addEventListener("click", function () { answer.textContent = ex.a; });
+        asks.appendChild(b);
+        asks.appendChild(document.createElement("br"));
+      });
+      asks.appendChild(answer);
+      info.appendChild(asks);
+    }
+
+    var chips = el("ul", "chips");
+    p.stack.forEach(function (s) { chips.appendChild(el("li", null, s)); });
+    info.appendChild(chips);
+
+    var links = el("div", "links");
+    p.links.forEach(function (l) {
+      var a = el("a", "btn" + (l.primary ? " primary" : ""), l.text);
+      a.href = l.href;
+      links.appendChild(a);
+    });
+    info.appendChild(links);
+
+    card.appendChild(shot); card.appendChild(info);
+    list.appendChild(card);
+  });
+
+  var slot = el("div", "slot");
+  var slotText = document.createElement("div");
+  var strong = el("strong", null, "Next project goes here");
+  slotText.appendChild(strong);
+  slotText.appendChild(el("p", null, "Add an entry to the PROJECTS list in index.html and it appears above this."));
+  slot.appendChild(slotText);
+  list.appendChild(slot);
+
+  document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
